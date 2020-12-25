@@ -1,11 +1,11 @@
-package ru.tinkoff.reactor.service;
+package ru.tinkdemo.reactor.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.tinkoff.reactor.domain.Message;
-import ru.tinkoff.reactor.repo.MessageRepository;
+import ru.tinkdemo.reactor.domain.Message;
+import ru.tinkdemo.reactor.repo.MessageRepository;
 
 @Service
 @RequiredArgsConstructor

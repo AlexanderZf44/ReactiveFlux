@@ -1,10 +1,10 @@
-package ru.tinkoff.reactor.config;
+package ru.tinkdemo.reactor.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.*;
-import ru.tinkoff.reactor.handlers.GreetingHandler;
+import ru.tinkdemo.reactor.handlers.GreetingHandler;
 
 @Configuration
 public class GreetingConfig {

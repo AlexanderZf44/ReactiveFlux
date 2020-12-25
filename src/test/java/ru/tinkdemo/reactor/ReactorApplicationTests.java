@@ -1,4 +1,4 @@
-package ru.tinkoff.reactor;
+package ru.tinkdemo.reactor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package ru.tinkoff.reactor.domain;
+package ru.tinkdemo.reactor.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

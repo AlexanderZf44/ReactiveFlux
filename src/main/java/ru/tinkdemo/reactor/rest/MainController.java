@@ -1,11 +1,11 @@
-package ru.tinkoff.reactor.rest;
+package ru.tinkdemo.reactor.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.tinkoff.reactor.domain.Message;
-import ru.tinkoff.reactor.service.MessageService;
+import ru.tinkdemo.reactor.domain.Message;
+import ru.tinkdemo.reactor.service.MessageService;
 
 @RestController
 @RequestMapping("/v2")

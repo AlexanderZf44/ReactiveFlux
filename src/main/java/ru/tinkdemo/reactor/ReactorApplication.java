@@ -1,4 +1,4 @@
-package ru.tinkoff.reactor;
+package ru.tinkdemo.reactor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
