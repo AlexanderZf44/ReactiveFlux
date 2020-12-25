@@ -1,0 +1,26 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="aipermyakov">
+        <comment>Insert new user role</comment>
+        <insert tableName="role" schemaName="test">
+            <column name="id" value="1"/>
+            <column name="name" value="ROLE_USER"/>
+            <column name="description" value="Role for simple user"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2" author="aipermyakov">
+        <comment>Insert new admin role</comment>
+        <insert tableName="role" schemaName="test">
+            <column name="id" value="2"/>
+            <column name="name" value="ROLE_ADMIN"/>
+            <column name="description" value="Role for app admin"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
