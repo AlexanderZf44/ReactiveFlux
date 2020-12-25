@@ -6,6 +6,8 @@ import ru.tinkdemo.reactor.domain.UserRole;
 
 import java.util.Set;
 import java.util.function.BiFunction;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UserMapper implements BiFunction<Row, Object, User> {
 
@@ -19,9 +21,11 @@ public class UserMapper implements BiFunction<Row, Object, User> {
         String roleName = row.get("role_name", String.class);
         String roleDescription = row.get("role_desc", String.class);
 
-        UserRole role = new UserRole(roleId, roleName, roleDescription);
+        Set<UserRole> roles = Stream
+                .of(new UserRole(roleId, roleName, roleDescription))
+                .collect(Collectors.toSet());
 
-        User user = new User(userId, userName, userPassword, Set.of(role));
+        User user = new User(userId, userName, userPassword, roles);
 
         return user;
     }

@@ -1,6 +1,5 @@
 package ru.tinkdemo.reactor.config;
 
-import liquibase.pro.packaged.B;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
