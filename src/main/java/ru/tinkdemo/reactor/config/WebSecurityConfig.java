@@ -2,12 +2,14 @@ package ru.tinkdemo.reactor.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import reactor.core.publisher.Mono;
 
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
@@ -34,6 +36,22 @@ public class WebSecurityConfig {
                 .pathMatchers("/", "/login", "/favicon.ico").permitAll()
                 .pathMatchers("/v2").hasRole("ADMIN")
                 .anyExchange().authenticated()
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(
+                        (exchange, ex) ->
+                                Mono.fromRunnable(
+                                        () -> exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED)
+                                )
+
+                )
+                .accessDeniedHandler(
+                        (exchange, ex) ->
+                                Mono.fromRunnable(
+                                        () -> exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN)
+                                )
+
+                )
                 .and()
                 .build();
     }

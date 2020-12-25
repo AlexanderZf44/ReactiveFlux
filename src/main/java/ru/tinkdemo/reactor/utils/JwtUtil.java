@@ -16,10 +16,17 @@ import java.util.stream.Collectors;
 @Component
 public class JwtUtil {
 
+    private static String SECRET;
+    private static String EXPIRATION_DURABLE;
+
     @Value("${jwt.secret}")
-    private static String secret;
+    public void setSecret(String secret) {
+        JwtUtil.SECRET = secret;
+    }
     @Value("${jwt.expiration}")
-    private static String expirationDurable;
+    public void setExpirationDurable(String expirationDurable) {
+        JwtUtil.EXPIRATION_DURABLE = expirationDurable;
+    }
 
     public static String extractUsername(String token) {
 
@@ -31,11 +38,11 @@ public class JwtUtil {
 
         return getClaimsFromToken(token)
                 .getExpiration()
-                .before(new Date());
+                .after(new Date());
     }
 
     public static Claims getClaimsFromToken(String token) {
-        String key = Base64.getEncoder().encodeToString(secret.getBytes());
+        String key = Base64.getEncoder().encodeToString(SECRET.getBytes());
 
         return Jwts.parserBuilder()
                 .setSigningKey(key)
@@ -55,7 +62,7 @@ public class JwtUtil {
                         .collect(Collectors.toList())
         );
 
-        long expirationSeconds = Long.parseLong(expirationDurable);
+        long expirationSeconds = Long.parseLong(EXPIRATION_DURABLE);
         Date currentDate = new Date();
         Date expirationDate = new Date(currentDate.getTime() + expirationSeconds * 1000);
 
@@ -64,7 +71,7 @@ public class JwtUtil {
                 .setSubject(user.getUsername())
                 .setIssuedAt(currentDate)
                 .setExpiration(expirationDate)
-                .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
+                .signWith(Keys.hmacShaKeyFor(SECRET.getBytes()))
                 .compact();
     }
 
