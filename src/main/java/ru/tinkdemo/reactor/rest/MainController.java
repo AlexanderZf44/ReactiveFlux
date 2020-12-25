@@ -16,7 +16,7 @@ public class MainController {
 
     @GetMapping("/hello")
     public Flux<Message> hello(@RequestParam(defaultValue = "0") Long start,
-                              @RequestParam(defaultValue = "3") Long count) {
+                               @RequestParam(defaultValue = "3") Long count) {
 
         return Flux
                 .just(
@@ -34,7 +34,7 @@ public class MainController {
     public Flux<Message> list(@RequestParam(defaultValue = "0") Long start,
                               @RequestParam(defaultValue = "3") Long count) {
 
-        return messageService.getMessagesList(); 
+        return messageService.getMessagesList();
     }
 
     @PostMapping("/add")
