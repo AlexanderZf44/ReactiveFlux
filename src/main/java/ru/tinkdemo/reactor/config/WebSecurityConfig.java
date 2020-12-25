@@ -1,5 +1,6 @@
 package ru.tinkdemo.reactor.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -10,7 +11,11 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig {
+
+    private final AuthenticationManagerConfig authenticationManager;
+    private final SecurityContextRepositoryConfig securityContextRepository;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -21,8 +26,10 @@ public class WebSecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {
         return serverHttpSecurity
                 .csrf().disable()
-                .formLogin().and()
+                .formLogin().disable()
                 .httpBasic().disable()
+                .authenticationManager(authenticationManager)
+                .securityContextRepository(securityContextRepository)
                 .authorizeExchange()
                 .pathMatchers("/", "/login", "/favicon.ico").permitAll()
                 .pathMatchers("/v2").hasRole("ADMIN")
