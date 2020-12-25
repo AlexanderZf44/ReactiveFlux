@@ -9,5 +9,20 @@
 </head>
 <body>
     Hello, {{client}}!
+    <form onsubmit="
+            var payload = {
+                method: 'post',
+                headers: {
+                    'Content-type': 'application/x-www-form-urlencoded'
+                },
+                body: `username=${this.username.value}&password=${this.password.value}`
+            }
+            fetch('/login', payload).then(rest => rest.next()).then(text => console.log(text));
+            return false;
+    ">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <input type="submit" value="Sign in">
+    </form>
 </body>
 </html>
