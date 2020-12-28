@@ -14,10 +14,16 @@ public class MessageServiceImpl implements MessageService {
 
     private final MessageRepository repository;
 
+    /**
+     * Получение списка приветственных сообщений из БД
+     */
     public Flux<Message> getMessagesList() {
         return repository.findAll();
     }
 
+    /**
+     * Добавление приветственного сообщения в БД
+     */
     public Mono<Message> addMessage(Message message) {
         return repository.save(message);
     }

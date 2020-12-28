@@ -13,6 +13,9 @@ public class UserServiceImpl implements UserService {
 
     private final CustomUserRepository userRepository;
 
+    /**
+     * Получение пользователя по username
+     */
     @Override
     public Mono<UserDetails> findByUsername(String username) {
         return userRepository.findByUsername(username)

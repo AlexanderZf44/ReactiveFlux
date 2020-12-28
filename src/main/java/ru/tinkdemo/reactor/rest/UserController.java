@@ -21,6 +21,9 @@ public class UserController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Эндпоинт для проведения авторизации пользователей
+     */
     @PostMapping("/login")
     public Mono<ResponseEntity> login(ServerWebExchange exchange) {
 

@@ -11,6 +11,9 @@ import java.util.stream.Stream;
 
 public class UserMapper implements BiFunction<Row, Object, User> {
 
+    /**
+     * Маппер для конвертации данных из sql запроса в объект пользователя
+     */
     @Override
     public User apply(Row row, Object o) {
         Long userId = row.get("user_id", Long.class);

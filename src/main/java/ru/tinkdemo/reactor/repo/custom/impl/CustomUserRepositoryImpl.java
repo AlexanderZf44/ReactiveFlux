@@ -12,6 +12,10 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
 
     private final DatabaseClient client;
 
+    /**
+     * Кастомный запрос для получения пользователя по его username,
+     * подгружает сущности role с отношением many-to-many
+     */
     @Override
     public Mono<User> findByUsername(String username) {
         UserMapper mapper = new UserMapper();

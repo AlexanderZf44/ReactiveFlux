@@ -20,6 +20,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class User implements UserDetails {
 
+    /**
+     * Идентификатор пользователя
+     */
     @Id
     private Long id;
 

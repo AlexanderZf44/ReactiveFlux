@@ -10,8 +10,15 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 public class Message {
 
+    /**
+     * Идентификатор сообщения для пользователя
+     */
     @Id
     private Long id;
+
+    /**
+     * Сообщение для пользователя
+     */
     private String data;
 
     public Message(String data) {

@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
+/**
+ * Класс для работы с JWT токенами авторизации
+ */
 @Component
 public class JwtUtil {
 
@@ -28,12 +31,18 @@ public class JwtUtil {
         JwtUtil.EXPIRATION_DURABLE = expirationDurable;
     }
 
+    /**
+     * Получение username из токена авторизации
+     */
     public static String extractUsername(String token) {
 
         return getClaimsFromToken(token)
                 .getSubject();
     }
 
+    /**
+     * Проверка токена на актуальность
+     */
     public static boolean validateToken(String token) {
 
         return getClaimsFromToken(token)
@@ -41,6 +50,9 @@ public class JwtUtil {
                 .after(new Date());
     }
 
+    /**
+     * Получение ключевых полей из токена
+     */
     public static Claims getClaimsFromToken(String token) {
         String key = Base64.getEncoder().encodeToString(SECRET.getBytes());
 
@@ -51,6 +63,10 @@ public class JwtUtil {
                 .getBody();
     }
 
+    /**
+     * Генерация нового токена для пользователя,
+     * время актуальности токена устанавливается в сутки
+     */
     public static String generateToken(User user) {
 
         HashMap<String, Object> claims = new HashMap<>();

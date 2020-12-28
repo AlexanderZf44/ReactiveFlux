@@ -12,6 +12,9 @@ import org.springframework.data.relational.core.mapping.Table;
 @AllArgsConstructor
 public class UserRole {
 
+    /**
+     * Идентификатор роли
+     */
     @Id
     private Long id;
 
