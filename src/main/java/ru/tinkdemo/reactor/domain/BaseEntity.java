@@ -2,20 +2,21 @@ package ru.tinkdemo.reactor.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.Id;
+
+import java.io.Serializable;
 
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class Message extends BaseEntity {
+public abstract class BaseEntity implements Serializable {
 
     /**
-     * Сообщение для пользователя
+     * Идентификатор сущности в БД
      */
-    private String data;
-
+    @Id
+    private Long id;
 }

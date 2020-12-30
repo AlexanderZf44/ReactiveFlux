@@ -2,21 +2,18 @@ package ru.tinkdemo.reactor.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
+@SuperBuilder
 @Table("role")
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRole {
-
-    /**
-     * Идентификатор роли
-     */
-    @Id
-    private Long id;
+@EqualsAndHashCode(callSuper = true)
+public class UserRole extends BaseEntity {
 
     /**
      * Наименование ролей

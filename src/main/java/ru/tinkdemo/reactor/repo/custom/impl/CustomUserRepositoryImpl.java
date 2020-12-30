@@ -27,7 +27,7 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
                 "left join role r on r.id = ur.role_id " +
                 "where u.username = :username";
 
-        Mono<User> result = client.sql(query)
+        return client.sql(query)
                 .bind("username", username)
                 .map(mapper::apply)
                 .all()
@@ -37,7 +37,5 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
                             return f;
                         }
                 );
-
-        return result;
     }
 }

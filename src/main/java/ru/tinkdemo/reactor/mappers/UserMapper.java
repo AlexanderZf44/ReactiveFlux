@@ -16,21 +16,23 @@ public class UserMapper implements BiFunction<Row, Object, User> {
      */
     @Override
     public User apply(Row row, Object o) {
-        Long userId = row.get("user_id", Long.class);
-        String userName = row.get("user_name", String.class);
-        String userPassword = row.get("user_pass", String.class);
-
-        Long roleId = row.get("role_id", Long.class);
-        String roleName = row.get("role_name", String.class);
-        String roleDescription = row.get("role_desc", String.class);
 
         Set<UserRole> roles = Stream
-                .of(new UserRole(roleId, roleName, roleDescription))
+                .of(
+                        UserRole.builder()
+                                .id(row.get("role_id", Long.class))
+                                .name(row.get("role_name", String.class))
+                                .description(row.get("role_desc", String.class))
+                                .build()
+                )
                 .collect(Collectors.toSet());
 
-        User user = new User(userId, userName, userPassword, roles);
-
-        return user;
+        return User.builder()
+                .id(row.get("user_id", Long.class))
+                .username(row.get("user_name", String.class))
+                .password(row.get("user_pass", String.class))
+                .roles(roles)
+                .build();
     }
 
 }

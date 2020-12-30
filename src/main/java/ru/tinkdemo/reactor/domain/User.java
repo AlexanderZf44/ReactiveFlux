@@ -3,8 +3,9 @@ package ru.tinkdemo.reactor.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,16 +16,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
+@SuperBuilder
 @Table("usr")
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements UserDetails {
-
-    /**
-     * Идентификатор пользователя
-     */
-    @Id
-    private Long id;
+@EqualsAndHashCode(callSuper = true)
+public class User extends BaseEntity implements UserDetails {
 
     /**
      * Username пользователя
