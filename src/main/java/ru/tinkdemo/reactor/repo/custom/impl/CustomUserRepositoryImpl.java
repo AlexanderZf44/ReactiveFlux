@@ -11,6 +11,7 @@ import ru.tinkdemo.reactor.repo.custom.CustomUserRepository;
 public class CustomUserRepositoryImpl implements CustomUserRepository {
 
     private final DatabaseClient client;
+    private final UserMapper mapper;
 
     /**
      * Кастомный запрос для получения пользователя по его username,
@@ -18,7 +19,6 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
      */
     @Override
     public Mono<User> findByUsername(String username) {
-        UserMapper mapper = new UserMapper();
 
         String query = "select u.id as user_id, u.username as user_name, u.password as user_pass, " +
                 "r.id as role_id, r.name as role_name, r.description as role_desc " +
@@ -29,7 +29,7 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
 
         return client.sql(query)
                 .bind("username", username)
-                .map(mapper::apply)
+                .map(mapper)
                 .all()
                 .reduce(
                         (f, s) -> {

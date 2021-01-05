@@ -2,11 +2,11 @@ package ru.tinkdemo.reactor.service;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.tinkdemo.reactor.domain.Message;
+import ru.tinkdemo.reactor.dto.MessageDto;
 
 public interface MessageService {
 
-    Flux<Message> getMessagesList();
+    Flux<MessageDto> getMessagesList(Long start, Long count);
 
-    Mono<Message> addMessage(Message message);
+    Mono<MessageDto> addMessage(MessageDto message);
 }

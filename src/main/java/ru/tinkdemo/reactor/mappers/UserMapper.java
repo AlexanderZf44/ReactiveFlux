@@ -1,21 +1,23 @@
 package ru.tinkdemo.reactor.mappers;
 
 import io.r2dbc.spi.Row;
+import org.springframework.stereotype.Component;
 import ru.tinkdemo.reactor.domain.User;
 import ru.tinkdemo.reactor.domain.UserRole;
 
 import java.util.Set;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class UserMapper implements BiFunction<Row, Object, User> {
+@Component
+public class UserMapper implements Function<Row, User> {
 
     /**
-     * Маппер для конвертации данных из sql запроса в объект пользователя
+     * Маппер для конвертации данных из sql запроса в сущность пользователя
      */
     @Override
-    public User apply(Row row, Object o) {
+    public User apply(Row row) {
 
         Set<UserRole> roles = Stream
                 .of(
