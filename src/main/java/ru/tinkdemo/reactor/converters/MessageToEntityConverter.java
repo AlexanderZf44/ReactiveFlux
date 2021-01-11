@@ -1,4 +1,4 @@
-package ru.tinkdemo.reactor.convertors;
+package ru.tinkdemo.reactor.converters;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 @Component
 @RequiredArgsConstructor
-public class MessageToEntityConvertor implements Function<MessageDto, Mono<Message>> {
+public class MessageToEntityConverter implements Function<MessageDto, Mono<Message>> {
 
     private final MessageRepository repository;
 

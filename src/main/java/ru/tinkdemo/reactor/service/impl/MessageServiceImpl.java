@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.tinkdemo.reactor.convertors.MessageToDtoConvertor;
-import ru.tinkdemo.reactor.convertors.MessageToEntityConvertor;
+import ru.tinkdemo.reactor.converters.MessageToDtoConverter;
+import ru.tinkdemo.reactor.converters.MessageToEntityConverter;
 import ru.tinkdemo.reactor.dto.MessageDto;
 import ru.tinkdemo.reactor.repo.MessageRepository;
 import ru.tinkdemo.reactor.service.MessageService;
@@ -15,8 +15,8 @@ import ru.tinkdemo.reactor.service.MessageService;
 public class MessageServiceImpl implements MessageService {
 
     private final MessageRepository repository;
-    private final MessageToDtoConvertor toDtoConvertor;
-    private final MessageToEntityConvertor toEntityConvertor;
+    private final MessageToDtoConverter toDtoConvertor;
+    private final MessageToEntityConverter toEntityConvertor;
 
     /**
      * Получение списка приветственных сообщений из БД
