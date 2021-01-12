@@ -21,12 +21,11 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService {
 
         Flux<ReceiverRecord<String, String>> kafkaFlux = kafkaConsumer.receive();
 
-        kafkaFlux.checkpoint("Start reading messages")
-                .log()
+        kafkaFlux
                 .doOnNext(record -> {
                     System.out.println(record); // Проводим какие-либо действия с записью
                     record.receiverOffset().acknowledge(); // Подтверждаем, что запись была получена
                 })
-                .checkpoint("Finish reading messages");
+                .subscribe();
     }
 }
